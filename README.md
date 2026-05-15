@@ -16,16 +16,16 @@ Point any agent at [`SKILL.md`](./SKILL.md). It contains:
 
 | Wallet | Chains | Protocols |
 |---|---|---|
-| [bankr](./bankr.md) | Base | x402 |
-| [circle](./circle.md) | Base | x402 |
-| [lobstercash](./lobstercash.md) | Base | x402 |
-| [awal](./awal.md) | Base, Solana | x402 |
-| [purl](./purl.md) | Base, Solana, Tempo | x402, MPP |
-| [agentcash](./agentcash.md) | Base, Solana, Tempo | x402, MPP |
-| [onchainos](./onchainos.md) | Base | x402 (signer-only) |
-| [tempo](./tempo.md) | Tempo | MPP |
-| [moonpay](./moonpay.md) | Solana | x402 |
-| [pay.sh](./pay-sh.md) | Solana | x402 |
+| [bankr](./wallets/bankr.md) | Base | x402 |
+| [circle](./wallets/circle.md) | Base | x402 |
+| [lobstercash](./wallets/lobstercash.md) | Base | x402 |
+| [awal](./wallets/awal.md) | Base, Solana | x402 |
+| [purl](./wallets/purl.md) | Base, Solana, Tempo | x402, MPP |
+| [agentcash](./wallets/agentcash.md) | Base, Solana, Tempo | x402, MPP |
+| [onchainos](./wallets/onchainos.md) | Base | x402 (signer-only) |
+| [tempo](./wallets/tempo.md) | Tempo | MPP |
+| [moonpay](./wallets/moonpay.md) | Solana | x402 |
+| [pay.sh](./wallets/pay-sh.md) | Solana | x402 |
 
 ## Install / use the skill
 

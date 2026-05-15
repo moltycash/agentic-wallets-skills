@@ -52,16 +52,16 @@ Each per-wallet doc carries the authoritative `Protocols & chains` list and `Ins
 
 | Wallet | Agentic chains | Protocols | Auth check | USDC balance | Install | Doc |
 |---|---|---|---|---|---|---|
-| bankr | Base | x402 | `bankr whoami` | `bankr wallet portfolio --chain base --json` + `jq` USDC filter | `npm i -g bankr` | [./bankr.md](./bankr.md) |
-| circle | Base | x402 | `circle wallet list --type agent --chain BASE --output json` | off-CLI — Base RPC for USDC contract | `npm i -g @circle-fin/cli` | [./circle.md](./circle.md) |
-| lobstercash | Base | x402 | `lobstercash status` | parse `Balance: ... usdc` from `lobstercash status` | `npm i -g lobstercash` | [./lobstercash.md](./lobstercash.md) |
-| awal | Base, Solana | x402 | `awal status` | `awal balance` (filter to USDC line) | none — `npx awal@latest` | [./awal.md](./awal.md) |
-| purl | Base, Solana, Tempo | x402 (Base, Solana), MPP (Tempo) | `purl wallet list` | `purl balance` (filter to USDC line) | see purl docs | [./purl.md](./purl.md) |
-| agentcash | Base, Solana, Tempo | x402 (Base, Solana), MPP (Tempo) | `npx agentcash@latest accounts` | `npx agentcash@latest balance` (filter to USDC line) | none — `npx agentcash@latest` | [./agentcash.md](./agentcash.md) |
-| onchainos | Base | x402 (signer-only) | `onchainos --help` (install check) | off-CLI — Base RPC for USDC contract | `npm i -g onchainos` | [./onchainos.md](./onchainos.md) |
-| tempo | Tempo | MPP | `tempo wallet whoami` | `tempo wallet whoami` (filter to USDC line) | Tempo CLI + `tempo add request` | [./tempo.md](./tempo.md) |
-| moonpay | Solana | x402 | `moonpay user retrieve` (or `moonpay wallet list`) | `moonpay --json token balance list --wallet <name> --chain solana` + `jq '.items[] \| select(.symbol=="USDC") \| .balance.amount'` | `npm i -g @moonpay/cli` | [./moonpay.md](./moonpay.md) |
-| pay.sh | Solana | x402 | `npx @solana/pay account list` | same call — USDC shown directly | none — `npx @solana/pay` | [./pay-sh.md](./pay-sh.md) |
+| bankr | Base | x402 | `bankr whoami` | `bankr wallet portfolio --chain base --json` + `jq` USDC filter | `npm i -g bankr` | [./bankr.md](./wallets/bankr.md) |
+| circle | Base | x402 | `circle wallet list --type agent --chain BASE --output json` | off-CLI — Base RPC for USDC contract | `npm i -g @circle-fin/cli` | [./circle.md](./wallets/circle.md) |
+| lobstercash | Base | x402 | `lobstercash status` | parse `Balance: ... usdc` from `lobstercash status` | `npm i -g lobstercash` | [./lobstercash.md](./wallets/lobstercash.md) |
+| awal | Base, Solana | x402 | `awal status` | `awal balance` (filter to USDC line) | none — `npx awal@latest` | [./awal.md](./wallets/awal.md) |
+| purl | Base, Solana, Tempo | x402 (Base, Solana), MPP (Tempo) | `purl wallet list` | `purl balance` (filter to USDC line) | see purl docs | [./purl.md](./wallets/purl.md) |
+| agentcash | Base, Solana, Tempo | x402 (Base, Solana), MPP (Tempo) | `npx agentcash@latest accounts` | `npx agentcash@latest balance` (filter to USDC line) | none — `npx agentcash@latest` | [./agentcash.md](./wallets/agentcash.md) |
+| onchainos | Base | x402 (signer-only) | `onchainos --help` (install check) | off-CLI — Base RPC for USDC contract | `npm i -g onchainos` | [./onchainos.md](./wallets/onchainos.md) |
+| tempo | Tempo | MPP | `tempo wallet whoami` | `tempo wallet whoami` (filter to USDC line) | Tempo CLI + `tempo add request` | [./tempo.md](./wallets/tempo.md) |
+| moonpay | Solana | x402 | `moonpay user retrieve` (or `moonpay wallet list`) | `moonpay --json token balance list --wallet <name> --chain solana` + `jq '.items[] \| select(.symbol=="USDC") \| .balance.amount'` | `npm i -g @moonpay/cli` | [./moonpay.md](./wallets/moonpay.md) |
+| pay.sh | Solana | x402 | `npx @solana/pay account list` | same call — USDC shown directly | none — `npx @solana/pay` | [./pay-sh.md](./wallets/pay-sh.md) |
 
 ## Worked example — paying moltycash via `purl`
 
@@ -81,5 +81,5 @@ Each doc has the same shape: frontmatter, description, `## Protocols & chains`, 
 Fetchable directly when this skill is hosted:
 
 ```bash
-curl https://<host>/agentic-wallets/<wallet>.md
+curl https://<host>/agentic-wallets/wallets/<wallet>.md
 ```
