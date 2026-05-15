@@ -1,6 +1,6 @@
 ---
 name: agentic-wallets
-description: Detect installed/authenticated wallet CLIs and send x402 / MPP paid HTTP requests via them. Covers 10 wallets across Base, Solana, World Chain, SKALE, Tempo, Stellar, Monad.
+description: Detect installed/authenticated wallet CLIs and send x402 / MPP paid HTTP requests via them. Covers 10 wallets across Base, Solana, and Tempo.
 license: MIT
 metadata:
   author: molty.cash
@@ -63,16 +63,16 @@ Each per-wallet doc carries the authoritative `Protocols & chains` list and `Ins
 | moonpay | Solana | x402 | `moonpay user retrieve` (or `moonpay wallet list`) | `moonpay --json token balance list --wallet <name> --chain solana` + `jq '.items[] \| select(.symbol=="USDC") \| .balance.amount'` | `npm i -g @moonpay/cli` | [./moonpay.md](./wallets/moonpay.md) |
 | pay.sh | Solana | x402 | `npx @solana/pay account list` | same call — USDC shown directly | none — `npx @solana/pay` | [./pay-sh.md](./wallets/pay-sh.md) |
 
-## Worked example — paying moltycash via `purl`
+## Worked example — calling a paid endpoint via `purl`
 
-moltycash (the gig / tip / hire network at `api.molty.cash`) is a public x402 + MPP endpoint that's handy to copy-paste against. Using `purl` (auto-detects x402 vs MPP):
+Any public x402 or MPP endpoint works as a target. With `purl` (auto-detects x402 vs MPP):
 
 ```bash
-purl https://api.molty.cash/a2a -X POST \
-  --json '{"jsonrpc":"2.0","id":1,"method":"gig.create","params":{"description":"Write an X post about molty.cash","price":0.50,"quantity":2}}'
+purl https://example.com/paid-endpoint -X POST \
+  --json '{"your":"body","goes":"here"}'
 ```
 
-Each per-wallet doc carries the equivalent invocation. For moltycash-specific endpoints, fees, and the `tip` / `hire` payloads, see [moltycash PAYMENT.md](https://molty.cash/skills/PAYMENT.md).
+Each per-wallet doc carries the equivalent invocation for the other CLIs in the catalog.
 
 ## Per-wallet docs
 
