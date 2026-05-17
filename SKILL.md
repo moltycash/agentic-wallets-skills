@@ -18,23 +18,28 @@ A catalog of wallet CLIs that can sign **x402** (HTTP 402) or **MPP** (Multi-Pro
 
 ## How to use
 
-This is a fetchable skill — an LLM coding agent (Claude Code, Codex, Cursor, etc.) reads SKILL.md once and reuses it across any paid HTTP endpoint. The flow per call:
+This is a fetchable skill — an LLM coding agent (Claude Code, Codex, Cursor, etc.) reads SKILL.md once and reuses it across any paid HTTP endpoint.
 
-**1. Detect wallets on the machine.** Run the `detect_wallets` probe in the next section. It reports which of the 10 wallet CLIs are installed, authenticated, and what USDC balance exists per chain.
+### Wallet selection — ask the human first
 
-**2. Match the chain.** The paid endpoint's 402 response lists accepted chains in `accepts[].network`. Find a wallet in the catalog whose `Protocols & chains` intersects that set, and whose USDC balance covers `amount + fee`.
+**Before any payment call, ask the human you are working for which wallet to use.** Do not auto-detect, do not default to env vars. Wallet selection is a deliberate choice; the human almost always has a preferred wallet.
 
-**3. Fetch the chosen wallet's transport doc.**
+> Skip the ask only if the human's original prompt already names a wallet (e.g. "using tempo CLI", "with bankr"). Use what they specified.
 
-```bash
-curl https://molty.cash/skills/agentic-wallets/wallets/<wallet>.md
-```
+If the human asks you to **scan their system** to find what's installed, run the `detect_wallets` probe in the next section. Treat detection as **opt-in**, not as Step 1 of every call.
 
-`<wallet>` ∈ `bankr`, `circle`, `lobstercash`, `awal`, `purl`, `agentcash`, `onchainos`, `tempo`, `moonpay`, `pay-sh`. Each doc gives the exact CLI invocation pattern for that wallet's x402 or MPP transport.
+### The flow per call
 
-**4. Combine wallet transport + endpoint payload.** The wallet doc tells you *how to send* (signing, headers, options). The paid endpoint's own spec tells you *what to send* (URL, request body, fee structure for any per-call payment cap). The [worked example](#worked-example--calling-a-paid-endpoint-via-purl) below shows the pattern with moltycash as the endpoint.
+1. **Ask the human** which wallet to use (or scan if they asked you to).
+2. **Match the chain.** The paid endpoint's 402 response lists accepted chains in `accepts[].network`. The chosen wallet's `Protocols & chains` must intersect that set, and the wallet must hold enough USDC for `amount + fee`.
+3. **Fetch the chosen wallet's transport doc.**
+   ```bash
+   curl https://molty.cash/skills/agentic-wallets/wallets/<wallet>.md
+   ```
+   `<wallet>` ∈ `bankr`, `circle`, `lobstercash`, `awal`, `purl`, `agentcash`, `onchainos`, `tempo`, `moonpay`, `pay-sh`. Each doc gives the exact CLI invocation pattern for that wallet's x402 or MPP transport.
+4. **Combine wallet transport + endpoint payload.** The wallet doc tells you *how to send* (signing, headers, options). The paid endpoint's own spec tells you *what to send* (URL, request body, fee structure for any per-call payment cap). The [worked example](#worked-example--calling-a-paid-endpoint-via-purl) below shows the pattern with moltycash as the endpoint.
 
-If no catalog wallet is present on the machine, every per-wallet doc carries a one-line `## Install` hint with the canonical package + docs link — so the agent can offer the user a short menu of install options instead of guessing.
+If no catalog wallet works for the human, every per-wallet doc carries a one-line `## Install` hint with the canonical package + docs link — offer a short menu of install options instead of guessing.
 
 ## Quick detection probe
 
