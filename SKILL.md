@@ -35,7 +35,7 @@ The paid endpoint's 402 response lists accepted chains in `accepts[].network`. T
 ### 3. Fetch the chosen wallet's doc
 
 ```bash
-curl <host>/agentic-wallets/wallets/<wallet>.md
+curl https://molty.cash/skills/agentic-wallets/wallets/<wallet>.md
 ```
 
 `<wallet>` ∈ `bankr`, `circle`, `lobstercash`, `awal`, `purl`, `agentcash`, `onchainos`, `tempo`, `moonpay`, `pay-sh`. Each doc has the exact CLI invocation pattern for that wallet's x402 or MPP transport.
